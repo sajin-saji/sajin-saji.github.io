@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-porcelain: #F3F0E8;
+    --text-forest: #203C35;
+    --accent-persimmon: #C65D43;
+    --muted-sage: #A8B5A0;
+    --text-olive: #343830;
+    --border-limestone: #E3DED2;
+    --border-limestone-dark: #D4CEBF;
+    --surface-tint: #ECE7DC;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-porcelain);
+    color: var(--text-olive);
+  }
+
+  body {
+    background-color: #F3F0E8;
+    color: #343830;
+    font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.font-cursive {
+  font-family: var(--font-cursive), "Caveat", cursive;
+}
+
+.font-body {
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+.pulse-persimmon {
+  box-shadow: 0 0 0 0 rgba(198, 93, 67, 0.6);
+  animation: pulse-ring 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(198, 93, 67, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(198, 93, 67, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(198, 93, 67, 0);
+  }
+}

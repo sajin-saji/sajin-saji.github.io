@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="sGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#203C35" />
+      <stop offset="100%" stop-color="#C65D43" />
+    </linearGradient>
+  </defs>
+  <text 
+    x="16" 
+    y="25" 
+    font-family="Georgia, 'Times New Roman', serif" 
+    font-weight="bold" 
+    font-size="28" 
+    fill="url(#sGrad)" 
+    text-anchor="middle"
+    dominant-baseline="auto"
+  >S</text>
+</svg>
