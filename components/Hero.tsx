@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { portfolioData } from "@/data/portfolioData";
-import { ArrowUpRight, Sparkles, MapPin, Calendar, Mail } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -53,7 +53,7 @@ export const Hero: React.FC = () => {
             {t(hero.lead)}
           </p>
 
-          {/* Modern Soft Action CTAs */}
+          {/* Action CTAs */}
           <div className="flex flex-wrap items-center gap-4 mb-10">
             <a
               href="#projects"
@@ -99,43 +99,41 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Column: Modern Organic Portrait Showcase (Cols 8-12) */}
-        <div className="lg:col-span-5 flex flex-col items-center lg:items-end">
-          <div className="relative w-full max-w-sm">
-            {/* Background decorative soft blob/frame */}
-            <div className="absolute -inset-2 rounded-[2.5rem] bg-gradient-to-tr from-[#A8B5A0]/40 to-[#D4CEBF]/60 blur-md transform -rotate-2" />
+        {/* Right Column: Seamless Foggy Portrait Blend (Cols 8-12) */}
+        <div className="lg:col-span-5 flex flex-col items-center lg:items-end relative">
+          <div className="relative w-full max-w-sm sm:max-w-md">
+            {/* Ambient subtle fog backdrop glow */}
+            <div className="absolute inset-0 bg-radial from-[#A8B5A0]/25 via-[#D4CEBF]/20 to-transparent blur-3xl pointer-events-none scale-110" />
 
-            <div className="relative rounded-[2rem] overflow-hidden border-2 border-[#D4CEBF] bg-[#ECE7DC] p-3 shadow-xl">
-              <div className="relative aspect-square w-full rounded-[1.5rem] overflow-hidden bg-[#D4CEBF]/40">
-                <Image
-                  src={hero.portrait.src}
-                  alt={hero.portrait.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 360px"
-                  priority
-                  className="object-cover hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              {/* Floating Badge with Cursive Touch */}
-              <div className="mt-3.5 pt-2.5 border-t border-[#D4CEBF] flex items-center justify-between">
-                <div className="flex flex-col">
-                  <span className="font-display font-bold text-sm text-[#203C35]">
-                    {hero.portrait.badgeTitle}
-                  </span>
-                  <span className="text-xs text-[#343830]/70 font-medium">
-                    {hero.portrait.badgeSubtitle}
-                  </span>
-                </div>
-                <span className="font-cursive text-xl text-[#C65D43]">
-                  Mechatronics
-                </span>
-              </div>
+            {/* Foggy Seamless Photo Container */}
+            <div
+              className="relative aspect-square sm:aspect-[4/4.2] w-full overflow-hidden"
+              style={{
+                maskImage: "radial-gradient(ellipse 75% 75% at 50% 48%, black 35%, rgba(0, 0, 0, 0.8) 60%, transparent 95%)",
+                WebkitMaskImage: "radial-gradient(ellipse 75% 75% at 50% 48%, black 35%, rgba(0, 0, 0, 0.8) 60%, transparent 95%)",
+              }}
+            >
+              <Image
+                src={hero.portrait.src}
+                alt={hero.portrait.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 420px"
+                priority
+                className="object-cover object-top hover:scale-105 transition-transform duration-700 filter contrast-[1.03]"
+              />
             </div>
 
-            {/* Handwritten note sticker */}
-            <div className="mt-3 flex items-center justify-end gap-1 text-right">
-              <span className="font-cursive text-lg text-[#C65D43]">
+            {/* Floating Soft Info Capsule */}
+            <div className="mt-2 flex items-center justify-between px-2 text-xs text-[#343830]">
+              <div className="flex items-center gap-2">
+                <span className="font-display font-bold text-sm text-[#203C35]">
+                  {hero.portrait.badgeTitle}
+                </span>
+                <span className="text-[#343830]/70 font-medium">
+                  {hero.portrait.badgeSubtitle}
+                </span>
+              </div>
+              <span className="font-cursive text-xl text-[#C65D43]">
                 Deggendorf &amp; Regensburg 🇩🇪
               </span>
             </div>
@@ -143,7 +141,7 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Tech Stack Pills (Soft Rounded Pills) */}
+      {/* Tech Stack Pills */}
       <div className="mt-12 pt-6 border-t border-[#E3DED2] flex flex-wrap items-center gap-2 text-xs text-[#203C35]">
         <span className="font-semibold uppercase tracking-wider text-[#343830]/70 mr-2">
           Core Technologies:
