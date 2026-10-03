@@ -29,7 +29,7 @@ export const Navbar: React.FC = () => {
       }`}
       aria-label="Site Navigation"
     >
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
         {/* Brand & Cursive Subtitle */}
         <a
           href="#top"

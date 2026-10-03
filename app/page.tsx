@@ -13,7 +13,7 @@ export default function Home() {
     <div className="relative min-h-screen flex flex-col">
       <div id="top" />
       <Navbar />
-      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <Hero />
         <Stats />
         <Projects />

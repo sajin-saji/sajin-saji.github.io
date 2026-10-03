@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="w-full border-t border-[#E3DED2] bg-[#ECE7DC]/30 py-10 mt-12" aria-label="Site Footer">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#343830]/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#343830]/80">
         {/* Left: Copyright & Academic affiliation */}
         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-2 gap-y-1 text-center sm:text-left">
           <span className="font-semibold text-[#203C35]">{footer.copyright}</span>
