@@ -12,15 +12,12 @@ export const Hero: React.FC = () => {
 
   return (
     <section id="about" className="pt-8 sm:pt-14 pb-16 border-b border-[#E3DED2]">
-      {/* Modern Top Pill: Status + Cursive Highlight */}
+      {/* Modern Top Pill: Status */}
       <div className="flex flex-wrap items-center gap-3 mb-8">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ECE7DC] border border-[#D4CEBF] text-xs font-semibold text-[#203C35] shadow-sm">
           <span className="w-2 h-2 rounded-full bg-[#C65D43] pulse-persimmon" />
           <span>{t(hero.kicker)}</span>
         </div>
-        <span className="font-cursive text-xl text-[#C65D43] hidden sm:inline-block">
-          ✨ Available 2025/2026
-        </span>
       </div>
 
       {/* Main Hero Showcase */}
