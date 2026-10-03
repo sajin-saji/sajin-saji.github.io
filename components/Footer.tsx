@@ -14,21 +14,25 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="py-12 border-t border-[#E3DED2] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#343830]/70">
-      <div className="flex items-center gap-2">
-        <span>{footer.copyright}</span>
-        <span>·</span>
-        <span>{t(footer.affiliations)}</span>
-      </div>
+    <footer className="w-full border-t border-[#E3DED2] bg-[#ECE7DC]/30 py-10 mt-12" aria-label="Site Footer">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#343830]/80">
+        {/* Left: Copyright & Academic affiliation */}
+        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-2 gap-y-1 text-center sm:text-left">
+          <span className="font-semibold text-[#203C35]">{footer.copyright}</span>
+          <span className="hidden sm:inline text-[#343830]/40">·</span>
+          <span className="text-[#343830]/75">{t(footer.affiliations)}</span>
+        </div>
 
-      <button
-        type="button"
-        onClick={scrollToTop}
-        className="inline-flex items-center gap-1.5 text-[#203C35] hover:text-[#C65D43] transition-colors py-1 focus:outline-none"
-      >
-        <ArrowUp className="w-3.5 h-3.5" />
-        <span className="uppercase tracking-wider">Back to top</span>
-      </button>
+        {/* Right: Aligned Back to Top */}
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="group inline-flex items-center gap-1.5 text-xs font-semibold text-[#203C35] hover:text-[#C65D43] transition-colors py-1 px-2.5 rounded-full hover:bg-[#ECE7DC] focus:outline-none"
+        >
+          <span className="uppercase tracking-wider">Back to top</span>
+          <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform" />
+        </button>
+      </div>
     </footer>
   );
 };

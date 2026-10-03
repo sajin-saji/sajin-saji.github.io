@@ -42,7 +42,7 @@ export const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 1. Client Validation for the 3 fields
+    // 1. Client Validation
     if (!name.trim() || !email.trim() || !message.trim()) {
       setStatus("error");
       setFeedbackMessage(
@@ -78,7 +78,6 @@ export const Contact: React.FC = () => {
     setStatus("loading");
     setFeedbackMessage("");
 
-    // Exact 3 fields payload (+ honeypot for bot protection)
     const payload = {
       form_id: "contact",
       name: name.trim(),
@@ -90,7 +89,7 @@ export const Contact: React.FC = () => {
     let submitted = false;
     let lastError = "";
 
-    // Send to FormLynk API
+    // Send payload to backend
     for (const endpoint of FORMLYNK_ENDPOINTS) {
       try {
         const response = await fetch(endpoint, {
@@ -120,8 +119,8 @@ export const Contact: React.FC = () => {
       setStatus("success");
       setFeedbackMessage(
         language === "de"
-          ? "Vielen Dank! Ihre Nachricht wurde erfolgreich über FormLynk an Sajin Saji übermittelt."
-          : "Thank you! Your message has been successfully delivered to Sajin Saji via FormLynk."
+          ? "Vielen Dank! Ihre Nachricht wurde erfolgreich übermittelt. Sajin Saji wird sich in Kürze bei Ihnen melden."
+          : "Thank you! Your message has been successfully delivered. Sajin Saji will respond to you promptly."
       );
       setName("");
       setEmail("");
@@ -194,10 +193,10 @@ export const Contact: React.FC = () => {
           </div>
         </div>
 
-        {/* FormLynk Form: Strictly 3 Fields (Name, Email, Message) (Cols 6-12) */}
+        {/* Form: Strictly 3 Fields (Name, Email, Message) (Cols 6-12) */}
         <div className="lg:col-span-7 pt-4 lg:pt-0">
           <form onSubmit={handleSubmit} className="flex flex-col gap-6" noValidate>
-            {/* Honeypot field (hidden from users) */}
+            {/* Honeypot field */}
             <input
               type="text"
               name="_gotcha"
@@ -262,7 +261,7 @@ export const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="inline-flex items-center gap-2 bg-[#203C35] text-[#F3F0E8] hover:bg-[#C65D43] px-7 py-3.5 text-sm font-semibold tracking-wide disabled:opacity-60 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 bg-[#203C35] text-[#F3F0E8] hover:bg-[#C65D43] px-8 py-3.5 rounded-full text-sm font-semibold tracking-wide disabled:opacity-60 transition-colors cursor-pointer shadow-md hover:shadow-lg"
               >
                 {status === "loading" ? (
                   <>
@@ -276,10 +275,6 @@ export const Contact: React.FC = () => {
                   </>
                 )}
               </button>
-
-              <span className="font-mono text-[11px] text-[#343830]/60">
-                FormLynk API Engine
-              </span>
             </div>
 
             {/* Live Feedback Alerts */}
