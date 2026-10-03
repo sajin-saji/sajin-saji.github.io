@@ -104,19 +104,19 @@ export const Hero: React.FC = () => {
 
             {/* Foggy Seamless Photo Container */}
             <div
-              className="relative aspect-square sm:aspect-[4/4.2] w-full overflow-hidden"
+              className="relative aspect-square w-full max-w-[340px] mx-auto overflow-hidden"
               style={{
-                maskImage: "radial-gradient(ellipse 75% 75% at 50% 48%, black 35%, rgba(0, 0, 0, 0.8) 60%, transparent 95%)",
-                WebkitMaskImage: "radial-gradient(ellipse 75% 75% at 50% 48%, black 35%, rgba(0, 0, 0, 0.8) 60%, transparent 95%)",
+                maskImage: "radial-gradient(circle at 50% 50%, black 55%, rgba(0, 0, 0, 0.85) 75%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(circle at 50% 50%, black 55%, rgba(0, 0, 0, 0.85) 75%, transparent 100%)",
               }}
             >
               <Image
                 src={hero.portrait.src}
                 alt={hero.portrait.alt}
                 fill
-                sizes="(max-width: 768px) 100vw, 420px"
+                sizes="(max-width: 768px) 100vw, 340px"
                 priority
-                className="object-cover object-top hover:scale-105 transition-transform duration-700 filter contrast-[1.03]"
+                className="object-cover object-center hover:scale-105 transition-transform duration-700"
               />
             </div>
 
