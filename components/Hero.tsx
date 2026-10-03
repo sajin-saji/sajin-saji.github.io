@@ -77,35 +77,37 @@ export const Hero: React.FC = () => {
             </a>
           </div>
 
-          {/* Facts Row with Soft Rounded Badges */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-[#D4CEBF]/60">
-            {hero.quickFacts.map((fact, idx) => (
-              <div
-                key={idx}
-                className="bg-[#FAF8F5]/85 backdrop-blur-xs border border-[#D4CEBF]/80 rounded-2xl p-4 flex flex-col justify-center transition-all hover:bg-[#FAF8F5] hover:border-[#C65D43]/40"
-              >
-                <div className="flex items-center gap-1.5 mb-1 text-[#343830]/70">
-                  {idx === 0 && <MapPin className="w-3.5 h-3.5 text-[#C65D43]" />}
-                  {idx === 1 && <Clock className="w-3.5 h-3.5 text-[#203C35]" />}
-                  {idx === 2 && <Mail className="w-3.5 h-3.5 text-[#C65D43]" />}
-                  <span className="text-[11px] uppercase tracking-wider font-semibold">
-                    {t(fact.key)}
-                  </span>
+          {/* Quick Facts: Clean Editorial Key-Value Stream (NO CARDS / NO BOXES) */}
+          <div className="pt-8 border-t border-[#D4CEBF]/70">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 divide-y sm:divide-y-0 sm:divide-x divide-[#D4CEBF]/60">
+              {hero.quickFacts.map((fact, idx) => (
+                <div
+                  key={idx}
+                  className={`flex flex-col ${idx !== 0 ? "pt-4 sm:pt-0 sm:pl-5" : "pr-3"}`}
+                >
+                  <div className="flex items-center gap-1.5 mb-1.5 text-[#C65D43]">
+                    {idx === 0 && <MapPin className="w-3.5 h-3.5" />}
+                    {idx === 1 && <Clock className="w-3.5 h-3.5" />}
+                    {idx === 2 && <Mail className="w-3.5 h-3.5" />}
+                    <span className="text-[11px] font-mono uppercase tracking-widest font-semibold text-[#343830]/70">
+                      {t(fact.key)}
+                    </span>
+                  </div>
+                  <div className="text-sm sm:text-[15px] font-medium text-[#203C35] leading-snug">
+                    {fact.isEmail ? (
+                      <a
+                        href={`mailto:${fact.value.en}`}
+                        className="hover:text-[#C65D43] transition-colors underline decoration-[#C65D43]/40 underline-offset-4 hover:decoration-[#C65D43]"
+                      >
+                        {fact.value.en}
+                      </a>
+                    ) : (
+                      <span>{t(fact.value)}</span>
+                    )}
+                  </div>
                 </div>
-                <span className="text-xs sm:text-sm font-medium text-[#203C35] break-words">
-                  {fact.isEmail ? (
-                    <a
-                      href={`mailto:${fact.value.en}`}
-                      className="hover:text-[#C65D43] transition-colors underline decoration-[#C65D43]/30 underline-offset-2"
-                    >
-                      {fact.value.en}
-                    </a>
-                  ) : (
-                    t(fact.value)
-                  )}
-                </span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
