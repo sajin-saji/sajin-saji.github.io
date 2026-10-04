@@ -18,15 +18,6 @@ const GitHubIcon: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-const FORMLYNK_API_KEY =
-  process.env.NEXT_PUBLIC_FORM_API_KEY ||
-  "pk_live_yqULhGfDl0Rhbesz9cVRILQ5EzSwILeVd03NY7rJ";
-
-const FORMLYNK_ENDPOINTS = [
-  "https://salmon-cheetah-602860.hostingersite.com/api/v1/forms/submit",
-  "https://api.formlynk.io/api/v1/forms/submit",
-];
-
 export const Contact: React.FC = () => {
   const { language, t } = useLanguage();
   const contact = portfolioData.contact;
@@ -39,7 +30,7 @@ export const Contact: React.FC = () => {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [feedbackMessage, setFeedbackMessage] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     // 1. Client Validation
@@ -75,64 +66,17 @@ export const Contact: React.FC = () => {
       return;
     }
 
-    setStatus("loading");
-    setFeedbackMessage("");
+    // Open the visitor's email app with a pre-filled message (no third-party service).
+    const subject = `Portfolio contact – ${name.trim()}`;
+    const body = `${message.trim()}\n\n—\n${name.trim()}\n${email.trim()}`;
+    window.location.href = `mailto:${contact.info.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    const payload = {
-      form_id: "contact",
-      name: name.trim(),
-      email: email.trim(),
-      message: message.trim(),
-      _gotcha: "",
-    };
-
-    let submitted = false;
-    let lastError = "";
-
-    // Send payload to backend
-    for (const endpoint of FORMLYNK_ENDPOINTS) {
-      try {
-        const response = await fetch(endpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "X-API-Key": FORMLYNK_API_KEY,
-          },
-          body: JSON.stringify(payload),
-        });
-
-        const result = await response.json().catch(() => null);
-
-        if (response.ok && (result?.success === true || result?.success !== false)) {
-          submitted = true;
-          break;
-        } else {
-          lastError = result?.error?.message || result?.message || "Submission error.";
-        }
-      } catch (err) {
-        lastError = err instanceof Error ? err.message : "Network error.";
-      }
-    }
-
-    if (submitted) {
-      setStatus("success");
-      setFeedbackMessage(
-        language === "de"
-          ? "Vielen Dank! Ihre Nachricht wurde erfolgreich übermittelt. Sajin Saji wird sich in Kürze bei Ihnen melden."
-          : "Thank you! Your message has been successfully delivered. Sajin Saji will respond to you promptly."
-      );
-      setName("");
-      setEmail("");
-      setMessage("");
-    } else {
-      setStatus("error");
-      setFeedbackMessage(
-        language === "de"
-          ? `Übermittlungsfehler (${lastError}). Bitte kontaktieren Sie direkt sajinsaji222@gmail.com.`
-          : `Submission issue (${lastError}). Please write directly to sajinsaji222@gmail.com.`
-      );
-    }
+    setStatus("success");
+    setFeedbackMessage(
+      language === "de"
+        ? `Ihr E-Mail-Programm wurde mit Ihrer Nachricht geöffnet. Bitte senden Sie sie dort ab. Falls sich nichts öffnet, schreiben Sie direkt an ${contact.info.email}.`
+        : `Your email app has opened with your message. Please press send there. If nothing opened, write directly to ${contact.info.email}.`
+    );
   };
 
   return (
@@ -141,54 +85,54 @@ export const Contact: React.FC = () => {
         {/* Contact Info & Direct Links (Cols 1-5) */}
         <div className="lg:col-span-5 flex flex-col justify-between">
           <div>
-            <div className="font-mono text-xs font-semibold tracking-widest uppercase text-[#C65D43] mb-2">
+            <div className="font-body text-xs font-semibold tracking-widest uppercase text-[#2563EB] mb-2">
               {t(contact.eyebrow)}
             </div>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-[#203C35] tracking-tight mb-4">
+            <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-4xl text-[#16324F] tracking-tight mb-4">
               {t(contact.heading)}
             </h2>
-            <p className="text-[#343830]/80 text-base leading-relaxed mb-8">
+            <p className="text-[#374151]/80 text-base leading-relaxed mb-8">
               {t(contact.intro)}
             </p>
           </div>
 
           {/* Direct Verified Links */}
-          <div className="flex flex-col gap-4 pt-6 border-t border-[#E3DED2]">
+          <div className="flex flex-col gap-4 pt-6 border-t border-[#E4E7EC]">
             <a
               href={`mailto:${contact.info.email}`}
-              className="flex items-center justify-between group py-2 border-b border-[#E3DED2] text-[#203C35] hover:text-[#C65D43] transition-colors"
+              className="flex items-center justify-between group py-2 border-b border-[#E4E7EC] text-[#16324F] hover:text-[#2563EB] transition-colors"
             >
               <div className="flex flex-col">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#343830]/60">Email</span>
+                <span className="font-body text-[11px] uppercase tracking-wider text-[#374151]/60">Email</span>
                 <span className="font-medium text-sm sm:text-base">{contact.info.email}</span>
               </div>
-              <ArrowUpRight className="w-5 h-5 text-[#343830]/40 group-hover:text-[#C65D43] transition-colors" />
+              <ArrowUpRight className="w-5 h-5 text-[#374151]/40 group-hover:text-[#2563EB] transition-colors" />
             </a>
 
             <a
               href={contact.info.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between group py-2 border-b border-[#E3DED2] text-[#203C35] hover:text-[#C65D43] transition-colors"
+              className="flex items-center justify-between group py-2 border-b border-[#E4E7EC] text-[#16324F] hover:text-[#2563EB] transition-colors"
             >
               <div className="flex flex-col">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#343830]/60">LinkedIn</span>
+                <span className="font-body text-[11px] uppercase tracking-wider text-[#374151]/60">LinkedIn</span>
                 <span className="font-medium text-sm sm:text-base">{contact.info.linkedinDisplay}</span>
               </div>
-              <ArrowUpRight className="w-5 h-5 text-[#343830]/40 group-hover:text-[#C65D43] transition-colors" />
+              <ArrowUpRight className="w-5 h-5 text-[#374151]/40 group-hover:text-[#2563EB] transition-colors" />
             </a>
 
             <a
               href={contact.info.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between group py-2 border-b border-[#E3DED2] text-[#203C35] hover:text-[#C65D43] transition-colors"
+              className="flex items-center justify-between group py-2 border-b border-[#E4E7EC] text-[#16324F] hover:text-[#2563EB] transition-colors"
             >
               <div className="flex flex-col">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#343830]/60">GitHub</span>
+                <span className="font-body text-[11px] uppercase tracking-wider text-[#374151]/60">GitHub</span>
                 <span className="font-medium text-sm sm:text-base">{contact.info.githubDisplay}</span>
               </div>
-              <ArrowUpRight className="w-5 h-5 text-[#343830]/40 group-hover:text-[#C65D43] transition-colors" />
+              <ArrowUpRight className="w-5 h-5 text-[#374151]/40 group-hover:text-[#2563EB] transition-colors" />
             </a>
           </div>
         </div>
@@ -210,7 +154,7 @@ export const Contact: React.FC = () => {
 
             {/* Field 1: Name */}
             <label className="flex flex-col gap-2">
-              <span className="font-mono text-xs uppercase tracking-wider font-semibold text-[#203C35]">
+              <span className="font-body text-xs uppercase tracking-wider font-semibold text-[#16324F]">
                 {t(contact.form.nameLabel)} *
               </span>
               <input
@@ -220,13 +164,13 @@ export const Contact: React.FC = () => {
                 onChange={(e) => setName(e.target.value)}
                 required
                 placeholder="e.g. Dr. Thomas Meier"
-                className="w-full bg-[#ECE7DC]/70 border border-[#D4CEBF] focus:border-[#203C35] px-4 py-3 text-sm text-[#203C35] placeholder:text-[#343830]/40 focus:outline-none transition-colors"
+                className="w-full bg-[#EEF1F5]/70 border border-[#D1D5DB] focus:border-[#16324F] px-4 py-3 text-sm text-[#16324F] placeholder:text-[#374151]/40 focus-visible:outline-2 focus-visible:outline-offset-4 transition-colors"
               />
             </label>
 
             {/* Field 2: Email */}
             <label className="flex flex-col gap-2">
-              <span className="font-mono text-xs uppercase tracking-wider font-semibold text-[#203C35]">
+              <span className="font-body text-xs uppercase tracking-wider font-semibold text-[#16324F]">
                 {t(contact.form.emailLabel)} *
               </span>
               <input
@@ -236,13 +180,13 @@ export const Contact: React.FC = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="e.g. t.meier@company.de"
-                className="w-full bg-[#ECE7DC]/70 border border-[#D4CEBF] focus:border-[#203C35] px-4 py-3 text-sm text-[#203C35] placeholder:text-[#343830]/40 focus:outline-none transition-colors"
+                className="w-full bg-[#EEF1F5]/70 border border-[#D1D5DB] focus:border-[#16324F] px-4 py-3 text-sm text-[#16324F] placeholder:text-[#374151]/40 focus-visible:outline-2 focus-visible:outline-offset-4 transition-colors"
               />
             </label>
 
             {/* Field 3: Message */}
             <label className="flex flex-col gap-2">
-              <span className="font-mono text-xs uppercase tracking-wider font-semibold text-[#203C35]">
+              <span className="font-body text-xs uppercase tracking-wider font-semibold text-[#16324F]">
                 {t(contact.form.messageLabel)} *
               </span>
               <textarea
@@ -252,7 +196,7 @@ export const Contact: React.FC = () => {
                 required
                 rows={5}
                 placeholder="Hello Sajin, we are interested in discussing an engineering position with you..."
-                className="w-full bg-[#ECE7DC]/70 border border-[#D4CEBF] focus:border-[#203C35] px-4 py-3 text-sm text-[#203C35] placeholder:text-[#343830]/40 focus:outline-none transition-colors resize-y min-h-[140px]"
+                className="w-full bg-[#EEF1F5]/70 border border-[#D1D5DB] focus:border-[#16324F] px-4 py-3 text-sm text-[#16324F] placeholder:text-[#374151]/40 focus-visible:outline-2 focus-visible:outline-offset-4 transition-colors resize-y min-h-[140px]"
               />
             </label>
 
@@ -261,17 +205,17 @@ export const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="inline-flex items-center gap-2 bg-[#203C35] text-[#F3F0E8] hover:bg-[#C65D43] px-8 py-3.5 rounded-full text-sm font-semibold tracking-wide disabled:opacity-60 transition-colors cursor-pointer shadow-md hover:shadow-lg"
+                className="inline-flex items-center gap-2 bg-[#16324F] text-[#F7F8FA] hover:bg-[#2563EB] px-8 py-3.5 rounded-md text-sm font-semibold tracking-wide disabled:opacity-60 transition-colors cursor-pointer shadow-md hover:shadow-lg"
               >
                 {status === "loading" ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin text-[#F3F0E8]" />
+                    <Loader2 className="w-4 h-4 animate-spin text-[#F7F8FA]" />
                     <span>{language === "de" ? "WIRD GESENDET..." : "SENDING..."}</span>
                   </>
                 ) : (
                   <>
                     <span>{t(contact.form.submitBtn)}</span>
-                    <ArrowUpRight className="w-4 h-4 text-[#F3F0E8]" />
+                    <ArrowUpRight className="w-4 h-4 text-[#F7F8FA]" />
                   </>
                 )}
               </button>
@@ -279,11 +223,11 @@ export const Contact: React.FC = () => {
 
             {/* Live Feedback Alerts */}
             {status === "success" && (
-              <div className="p-4 border border-[#203C35] bg-[#ECE7DC] text-[#203C35] flex items-start gap-3 text-xs sm:text-sm animate-in fade-in duration-200">
-                <CheckCircle2 className="w-5 h-5 text-[#203C35] flex-shrink-0 mt-0.5" />
+              <div className="p-4 border border-[#16324F] bg-[#EEF1F5] text-[#16324F] flex items-start gap-3 text-xs sm:text-sm animate-in fade-in duration-200">
+                <CheckCircle2 className="w-5 h-5 text-[#16324F] flex-shrink-0 mt-0.5" />
                 <div className="flex flex-col">
-                  <span className="font-bold uppercase font-mono tracking-wider mb-0.5">
-                    {language === "de" ? "NACHRICHT ERFOLGREICH GESENDET" : "MESSAGE DELIVERED SUCCESSFULLY"}
+                  <span className="font-bold uppercase font-body tracking-wider mb-0.5">
+                    {language === "de" ? "E-MAIL BEREIT ZUM SENDEN" : "EMAIL READY TO SEND"}
                   </span>
                   <span>{feedbackMessage}</span>
                 </div>
@@ -291,10 +235,10 @@ export const Contact: React.FC = () => {
             )}
 
             {status === "error" && (
-              <div className="p-4 border border-[#C65D43] bg-[#ECE7DC] text-[#C65D43] flex items-start gap-3 text-xs sm:text-sm animate-in fade-in duration-200">
-                <AlertCircle className="w-5 h-5 text-[#C65D43] flex-shrink-0 mt-0.5" />
+              <div className="p-4 border border-[#2563EB] bg-[#EEF1F5] text-[#2563EB] flex items-start gap-3 text-xs sm:text-sm animate-in fade-in duration-200">
+                <AlertCircle className="w-5 h-5 text-[#2563EB] flex-shrink-0 mt-0.5" />
                 <div className="flex flex-col">
-                  <span className="font-bold uppercase font-mono tracking-wider mb-0.5">
+                  <span className="font-bold uppercase font-body tracking-wider mb-0.5">
                     {language === "de" ? "HINWEIS ZUR ÜBERMITTLUNG" : "SUBMISSION NOTICE"}
                   </span>
                   <span>{feedbackMessage}</span>

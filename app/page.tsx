@@ -1,9 +1,9 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { Stats } from "@/components/Stats";
 import { Projects } from "@/components/Projects";
 import { Skills } from "@/components/Skills";
 import { Experience } from "@/components/Experience";
+import { Certifications } from "@/components/Certifications";
 import { Education } from "@/components/Education";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
@@ -13,13 +13,13 @@ export default function Home() {
     <div className="relative min-h-screen flex flex-col">
       <div id="top" />
       <Navbar />
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <Hero />
-        <Stats />
         <Projects />
-        <Skills />
         <Experience />
+        <Skills />
         <Education />
+        <Certifications />
         <Contact />
       </main>
       <Footer />

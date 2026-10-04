@@ -1,29 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Newsreader, Plus_Jakarta_Sans, Caveat } from "next/font/google";
+
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-500.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/inter/latin-700.css";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  style: ["normal", "italic"],
-});
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-cursive",
-  display: "swap",
-});
-
 export const viewport: Viewport = {
-  themeColor: "#F3F0E8",
+  themeColor: "#F7F8FA",
   width: "device-width",
   initialScale: 1,
 };
@@ -49,8 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${newsreader.variable} ${plusJakarta.variable} ${caveat.variable}`}>
-      <body className="min-h-screen bg-[#F3F0E8] text-[#343830] selection:bg-[#C65D43] selection:text-[#F3F0E8]">
+    <html lang="en" >
+      <body className="min-h-screen bg-[#F7F8FA] text-[#374151] selection:bg-[#2563EB] selection:text-[#F7F8FA]">
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

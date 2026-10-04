@@ -177,8 +177,8 @@ export const portfolioData: PortfolioContent = {
   },
   hero: {
     kicker: {
-      en: "Open to working student roles, internships & Master's thesis",
-      de: "Offen für Werkstudentenstellen, Praktika & Masterarbeit"
+      en: "Seeking a master’s thesis for 2026/2027 · open to working student roles & internships",
+      de: "Masterarbeit für 2026/2027 gesucht · offen für Werkstudentenstellen & Praktika"
     },
     greeting: {
       en: "Hi, I am",
@@ -208,7 +208,7 @@ export const portfolioData: PortfolioContent = {
       },
       {
         key: { en: "Availability", de: "Verfügbarkeit" },
-        value: { en: "Up to 20 h/week · thesis 2027", de: "Bis 20 Std./Woche · Thesis 2027" }
+        value: { en: "Up to 20 h/week · seeking thesis 2026/2027", de: "Bis 20 Std./Woche · Masterarbeit 2026/2027" }
       },
       {
         key: { en: "Email", de: "Email" },
@@ -264,8 +264,8 @@ export const portfolioData: PortfolioContent = {
       de: "Ausgewählte Projekte"
     },
     heading: {
-      en: "Engineering work with real results",
-      de: "Ingenieurprojekte mit echten Ergebnissen"
+      en: "Selected engineering projects",
+      de: "Ausgewählte Ingenieurprojekte"
     },
     intro: {
       en: "Three projects across simulation, experiments and prototyping, each with the evidence behind it.",
@@ -452,8 +452,8 @@ export const portfolioData: PortfolioContent = {
       de: "Kernkompetenzen"
     },
     heading: {
-      en: "What I work with",
-      de: "Womit ich arbeite"
+      en: "Technical expertise",
+      de: "Technische Kompetenzen"
     },
     intro: {
       en: "A focused stack across automation, software, testing and manufacturing.",
@@ -461,89 +461,145 @@ export const portfolioData: PortfolioContent = {
     },
     categories: [
       {
-        number: "01",
-        title: { en: "Automation & Robotics", de: "Automatisierung & Robotik" },
-        description: {
-          en: "Commissioning, sensors and control from assembly to stable operation.",
-          de: "Inbetriebnahme, Sensorik und Steuerung vom Aufbau bis zum stabilen Betrieb."
-        },
-        skills: [
-          { en: "Commissioning", de: "Inbetriebnahme" },
-          { en: "Sensor integration", de: "Sensorintegration" },
-          { en: "Control systems", de: "Steuerungstechnik" },
-          "Motion control",
-          { en: "Robotics", de: "Robotik" }
-        ]
+            "number": "01",
+            "title": {
+                  "en": "Programming",
+                  "de": "Programmierung"
+            },
+            "description": {
+                  "en": "Languages used across coursework, engineering projects and embedded-system work.",
+                  "de": "Programmiersprachen aus Studium, Ingenieurprojekten und Embedded-Systemen."
+            },
+            "skills": [
+                  "Python",
+                  "C++",
+                  "C#",
+                  "MATLAB",
+                  "Lua",
+                  {
+                        "en": "C (coursework)",
+                        "de": "C (Studium)"
+                  }
+            ]
       },
       {
-        number: "02",
-        title: { en: "Programming", de: "Programmierung" },
-        description: {
-          en: "Object-oriented code for simulations, tools and control logic.",
-          de: "Objektorientierter Code für Simulationen, Tools und Steuerungslogik."
-        },
-        skills: ["C#", "Python", "C++", "C (embedded)", "Lua", "Git"]
+            "number": "02",
+            "title": {
+                  "en": "Simulation",
+                  "de": "Simulation"
+            },
+            "description": {
+                  "en": "Virtual environments, system modelling and engineering analysis.",
+                  "de": "Virtuelle Umgebungen, Systemmodellierung und technische Analyse."
+            },
+            "skills": [
+                  "Unity",
+                  "VR / Meta Quest 3",
+                  "MATLAB / Simulink",
+                  {
+                        "en": "System modelling",
+                        "de": "Systemmodellierung"
+                  },
+                  {
+                        "en": "Thermal simulation",
+                        "de": "Thermische Simulation"
+                  },
+                  "ANSYS Icepak"
+            ]
       },
       {
-        number: "03",
-        title: { en: "Testing & Analysis", de: "Test & Analyse" },
-        description: {
-          en: "Structured test series, evaluation and root-cause analysis.",
-          de: "Strukturierte Versuchsreihen, Auswertung und Ursachenanalyse."
-        },
-        skills: [
-          { en: "Test planning", de: "Versuchsplanung" },
-          "V&V",
-          { en: "Root-cause analysis", de: "Ursachenanalyse" },
-          "Ansys Icepak",
-          "MATLAB/Simulink"
-        ]
+            "number": "03",
+            "title": {
+                  "en": "Automation",
+                  "de": "Automatisierung"
+            },
+            "description": {
+                  "en": "Integration and testing of mechanical, electronic and control components.",
+                  "de": "Integration und Prüfung mechanischer, elektronischer und steuerungstechnischer Komponenten."
+            },
+            "skills": [
+                  {
+                        "en": "Control systems",
+                        "de": "Steuerungstechnik"
+                  },
+                  {
+                        "en": "Sensor integration",
+                        "de": "Sensorintegration"
+                  },
+                  {
+                        "en": "System integration",
+                        "de": "Systemintegration"
+                  },
+                  {
+                        "en": "Commissioning",
+                        "de": "Inbetriebnahme"
+                  },
+                  {
+                        "en": "Troubleshooting",
+                        "de": "Fehlersuche"
+                  }
+            ]
       },
       {
-        number: "04",
-        title: { en: "Simulation & CAD", de: "Simulation & CAD" },
-        description: {
-          en: "From 3D models to simulated systems and printed prototypes.",
-          de: "Von 3D-Modellen über Simulationen bis zu gedruckten Prototypen."
-        },
-        skills: [
-          "Unity",
-          "SolidWorks",
-          "AutoCAD",
-          "IceSL",
-          { en: "Additive manufacturing", de: "Additive Fertigung" }
-        ]
+            "number": "04",
+            "title": {
+                  "en": "Engineering tools",
+                  "de": "Engineering-Tools"
+            },
+            "description": {
+                  "en": "Design, development and documentation tools used in engineering work.",
+                  "de": "Werkzeuge für Konstruktion, Entwicklung und technische Dokumentation."
+            },
+            "skills": [
+                  "Git / GitHub",
+                  "Ubuntu / Windows",
+                  "SolidWorks",
+                  "AutoCAD",
+                  "IceSL",
+                  {
+                        "en": "Technical documentation",
+                        "de": "Technische Dokumentation"
+                  }
+            ]
       },
       {
-        number: "05",
-        title: { en: "Manufacturing & Quality", de: "Fertigung & Qualität" },
-        description: {
-          en: "Process knowledge and inspection for reliable parts.",
-          de: "Prozesswissen und Prüfung für zuverlässige Bauteile."
-        },
-        skills: [
-          { en: "Laser welding fundamentals", de: "Grundlagen Laserschweißen" },
-          "NDT",
-          "ISO 26262",
-          { en: "Documentation", de: "Dokumentation" }
-        ]
-      },
-      {
-        number: "06",
-        title: { en: "Languages & Tools", de: "Sprachen & Tools" },
-        description: {
-          en: "Working in international teams.",
-          de: "Arbeiten in internationalen Teams."
-        },
-        skills: [
-          { en: "English B2", de: "Englisch B2" },
-          { en: "German A2 (improving)", de: "Deutsch A2 (aktiv lernend)" },
-          "Malayalam",
-          "MS Office",
-          "Ubuntu"
-        ]
+            "number": "05",
+            "title": {
+                  "en": "Testing & prototyping",
+                  "de": "Test & Prototyping"
+            },
+            "description": {
+                  "en": "Verification, functional testing and parameter-driven physical prototypes.",
+                  "de": "Verifikation, Funktionstests und parametrisch entwickelte Prototypen."
+            },
+            "skills": [
+                  {
+                        "en": "Verification & validation",
+                        "de": "Verifikation & Validierung"
+                  },
+                  {
+                        "en": "System testing",
+                        "de": "Systemtests"
+                  },
+                  {
+                        "en": "Circuit prototyping",
+                        "de": "Schaltungsprototypen"
+                  },
+                  {
+                        "en": "Parametric gear modelling",
+                        "de": "Parametrische Zahnradmodellierung"
+                  },
+                  {
+                        "en": "Additive manufacturing",
+                        "de": "Additive Fertigung"
+                  },
+                  {
+                        "en": "STL / G-code preparation",
+                        "de": "STL- / G-Code-Vorbereitung"
+                  }
+            ]
       }
-    ]
+]
   },
   experience: {
     eyebrow: {
@@ -575,15 +631,6 @@ export const portfolioData: PortfolioContent = {
         ]
       },
       {
-        title: { en: "Intern – Artificial Intelligence", de: "Praktikant – Künstliche Intelligenz" },
-        when: { en: "2021", de: "2021" },
-        organization: "Goldmine",
-        description: {
-          en: "First practical experience with AI and machine-learning methods.",
-          de: "Erste praktische Erfahrungen mit KI und Machine-Learning-Methoden."
-        }
-      },
-      {
         title: { en: "Intern – Embedded Systems & Robotics", de: "Praktikant – Embedded Systems & Robotik" },
         when: { en: "07/2019 – 08/2019", de: "07/2019 – 08/2019" },
         organization: "inFOX · Kochi, India",
@@ -600,7 +647,7 @@ export const portfolioData: PortfolioContent = {
       de: "Ausbildung"
     },
     heading: {
-      en: "Mechanical foundation, mechatronics depth",
+      en: "Mechanical Foundation, Mechatronics Depth",
       de: "Maschinenbau als Basis, Mechatronik in der Tiefe"
     },
     items: [
@@ -612,11 +659,11 @@ export const portfolioData: PortfolioContent = {
         when: { en: "10/2023 – present", de: "10/2023 – heute" },
         organization: {
           en: "Technische Hochschule Deggendorf, Germany",
-          de: "Technische Hochschule Deggendorf, Germany"
+          de: "Technische Hochschule Deggendorf, Deutschland"
         },
         coursework: {
-          en: "Additive Manufacturing (incl. laser welding fundamentals), Advanced Robotics, Autonomous Systems, Cyber-Physical Systems, Human-Machine Interaction.",
-          de: "Additive Fertigung (inkl. Grundlagen Laserschweißen), Advanced Robotics, Autonomous Systems, Cyber-Physical Systems, Human-Machine Interaction."
+          en: "Additive Manufacturing, Advanced Robotics, Autonomous Systems, Cyber-Physical Systems, Human-Machine Interaction.",
+          de: "Additive Fertigung, Advanced Robotics, Autonomous Systems, Cyber-Physical Systems, Human-Machine Interaction."
         }
       },
       {
@@ -641,8 +688,8 @@ export const portfolioData: PortfolioContent = {
         },
         when: { en: "", de: "" },
         organization: {
-          en: "Tele-Robotics – Virtual University of Bavaria (vhb), 2025 · Non-Destructive Testing (NDT), 2021",
-          de: "Tele-Robotik – Virtuelle Hochschule Bayern (vhb), 2025 · Zerstörungsfreie Prüfung (NDT), 2021"
+          en: "Tele-Robotics – Virtual University of Bavaria (vhb), 2025 · Non-Destructive Testing (NDT), 2021 · Artificial Intelligence Internship – Goldmine, 2021",
+          de: "Tele-Robotik – Virtuelle Hochschule Bayern (vhb), 2025 · Zerstörungsfreie Prüfung (NDT), 2021 · Praktikum Künstliche Intelligenz – Goldmine, 2021"
         },
         isCertification: true
       }

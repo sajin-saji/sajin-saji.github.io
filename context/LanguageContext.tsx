@@ -13,10 +13,8 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>("en");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     try {
       const saved = localStorage.getItem("sajin_portfolio_lang") as Language;
       if (saved === "en" || saved === "de") {
@@ -35,6 +33,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       // ignore
     }
   }, []);
+
+  useEffect(() => { document.documentElement.lang = language; }, [language]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);

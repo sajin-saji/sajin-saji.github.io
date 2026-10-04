@@ -1,61 +1,42 @@
 "use client";
-
-import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { portfolioData } from "@/data/portfolioData";
 
-export const Skills: React.FC = () => {
+const groups = [
+  {
+    title: { en: "Automation & Systems", de: "Automatisierung & Systeme" },
+    skills: { en: "Control systems · Sensor integration · System integration · Commissioning", de: "Steuerungstechnik · Sensorintegration · Systemintegration · Inbetriebnahme" },
+    evidence: { en: "Experience: Logix Space Technologies", de: "Erfahrung: Logix Space Technologies" }, href: "#experience"
+  },
+  {
+    title: { en: "Programming", de: "Programmierung" },
+    skills: { en: "Python · C++ · C# · Lua · MATLAB", de: "Python · C++ · C# · Lua · MATLAB" },
+    evidence: { en: "Project: Parametric Gear Demonstrator (Lua)", de: "Projekt: Parametrischer Zahnrad-Demonstrator (Lua)" }, href: "#gear-demonstrator"
+  },
+  {
+    title: { en: "Simulation & Design", de: "Simulation & Konstruktion" },
+    skills: { en: "MATLAB/Simulink · Unity · ANSYS Icepak · SolidWorks · AutoCAD · IceSL", de: "MATLAB/Simulink · Unity · ANSYS Icepak · SolidWorks · AutoCAD · IceSL" },
+    evidence: { en: "Project: Thermal Optimisation (ANSYS Icepak)", de: "Projekt: Thermische Optimierung (ANSYS Icepak)" }, href: "#thermal-optimization"
+  },
+  {
+    title: { en: "Testing & Prototyping", de: "Test & Prototyping" },
+    skills: { en: "System testing · Verification & validation · Troubleshooting · Additive manufacturing", de: "Systemtests · Verifikation & Validierung · Fehlersuche · Additive Fertigung" },
+    evidence: { en: "Project: Parametric Gear Demonstrator (3D printing)", de: "Projekt: Parametrischer Zahnrad-Demonstrator (3D-Druck)" }, href: "#gear-demonstrator"
+  }
+];
+
+export function Skills() {
   const { t } = useLanguage();
-  const skillsData = portfolioData.skills;
-
-  return (
-    <section id="skills" className="py-20 border-b border-[#E3DED2] scroll-mt-16">
-      {/* Section Header */}
-      <div className="mb-14">
-        <div className="font-mono text-xs font-semibold tracking-widest uppercase text-[#C65D43] mb-2">
-          {t(skillsData.eyebrow)}
-        </div>
-        <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-[#203C35] tracking-tight mb-3">
-          {t(skillsData.heading)}
-        </h2>
-        <p className="text-[#343830]/80 text-base max-w-2xl">
-          {t(skillsData.intro)}
-        </p>
-      </div>
-
-      {/* Editorial Typographic Columns (No Cards) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
-        {skillsData.categories.map((category) => (
-          <div key={category.number} className="flex flex-col pt-4 border-t border-[#D4CEBF]">
-            {/* Number & Title */}
-            <div className="flex items-baseline justify-between mb-2">
-              <h3 className="font-display font-bold text-xl text-[#203C35]">
-                {t(category.title)}
-              </h3>
-              <span className="font-mono text-xs font-bold text-[#C65D43]">
-                {category.number}
-              </span>
-            </div>
-
-            {/* Description */}
-            <p className="text-xs sm:text-sm text-[#343830]/80 leading-relaxed mb-5">
-              {t(category.description)}
-            </p>
-
-            {/* Inline Typographic Skill List */}
-            <div className="flex flex-wrap gap-x-3 gap-y-2 mt-auto pt-3 border-t border-[#E3DED2]">
-              {category.skills.map((skill, sIdx) => (
-                <span
-                  key={sIdx}
-                  className="font-mono text-xs text-[#203C35] bg-[#ECE7DC] px-2 py-0.5"
-                >
-                  {t(skill)}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
+  return <section id="skills" className="py-20 border-b border-[#E4E7EC]">
+    <p className="text-xs font-semibold tracking-widest uppercase text-[#2563EB] mb-2">{t({ en: "Technical skills", de: "Technische Kompetenzen" })}</p>
+    <h2 className="font-bold text-3xl sm:text-4xl text-[#16324F] tracking-tight mb-10">{t({ en: "Technical Expertise", de: "Technische Kompetenzen" })}</h2>
+    <div className="expertise-grid">
+      {groups.map(group => <article key={group.title.en} className="expertise-block">
+        <h3 className="text-xl font-semibold mb-4">{t(group.title)}</h3>
+        <p className="text-base leading-relaxed text-[#374151] mb-5">{t(group.skills)}</p>
+        <a href={group.href} className="text-sm text-[#2563EB] hover:underline underline-offset-4">{t(group.evidence)} <span aria-hidden="true">→</span></a>
+      </article>)}
+    </div>
+    <p className="mt-8 pt-6 border-t border-[#E4E7EC] text-sm text-[#475569]"><span className="font-semibold text-[#16324F]">{t({ en: "Development tools", de: "Entwicklungswerkzeuge" })}: </span>Git/GitHub · Ubuntu/Linux · Windows</p>
+    <p className="mt-3 text-sm text-[#475569]"><span className="font-semibold text-[#16324F]">{t({ en: "Currently learning", de: "Aktuell im Lernen" })}: </span>{t({ en: "ROS / ROS 2 — learning through tutorials", de: "ROS / ROS 2 — Lernen mit Tutorials" })}</p>
+  </section>;
+}
