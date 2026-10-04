@@ -208,7 +208,7 @@ export const portfolioData: PortfolioContent = {
       },
       {
         key: { en: "Availability", de: "Verfügbarkeit" },
-        value: { en: "Up to 20 h/week · seeking thesis 2026/2027", de: "Bis 20 Std./Woche · Masterarbeit 2026/2027" }
+        value: { en: "Working student · seeking thesis 2026/2027", de: "Werkstudent · Masterarbeit 2026/2027" }
       },
       {
         key: { en: "Email", de: "Email" },
